@@ -71,7 +71,7 @@ public class Application implements CommandLineRunner {
 
         System.out.println("Done!");
 
-        exit(0);
+       // exit(0);
     }
 
 }

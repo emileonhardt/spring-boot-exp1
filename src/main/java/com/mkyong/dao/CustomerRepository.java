@@ -18,9 +18,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     List<Customer> findByDate(Date date);
 
-    //@Query("select c from Customer c")
-    //Stream<Customer> findAllAndStream();
-
-    //List<Customer> findByDateBetween(Date from, Date to);
-
+    @Query("select c from Customer c")
+    Stream<Customer> findAllAndStream();
 }
