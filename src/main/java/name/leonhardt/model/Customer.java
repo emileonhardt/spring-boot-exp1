@@ -1,4 +1,4 @@
-package com.mkyong.model;
+package name.leonhardt.model;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package com.mkyong.rs;
+package name.leonhardt.rs;
 
-import com.mkyong.svc.CustomerService;
+import name.leonhardt.svc.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

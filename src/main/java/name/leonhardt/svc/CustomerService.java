@@ -1,12 +1,11 @@
-package com.mkyong.svc;
+package name.leonhardt.svc;
 
-import com.mkyong.dao.CustomerRepository;
+import name.leonhardt.dao.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.ManagedBean;
-
-@ManagedBean
+@Service
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;

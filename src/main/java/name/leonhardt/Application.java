@@ -1,7 +1,10 @@
-package com.mkyong;
+package name.leonhardt;
 
-import com.mkyong.dao.CustomerRepository;
-import com.mkyong.model.Customer;
+import name.leonhardt.amq.Order;
+import name.leonhardt.amq.OrderConsumer;
+import name.leonhardt.amq.OrderSender;
+import name.leonhardt.dao.CustomerRepository;
+import name.leonhardt.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,9 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
-
-import static java.lang.System.exit;
 
 //for jsr310 java 8 java.time.*
 //@EntityScan(
@@ -28,6 +30,12 @@ public class Application implements CommandLineRunner {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    private OrderSender orderSender;
+
+    @Autowired
+    private OrderConsumer orderConsumer;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
@@ -60,18 +68,14 @@ public class Application implements CommandLineRunner {
             stream.forEach(x -> System.out.println(x));
         }
 
-        //System.out.println("....................");
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //Date from = sdf.parse("2017-02-15");
-        //Date to = sdf.parse("2017-02-17");
+        // Send a message
+        Order orderSend = new Order("alpha", LocalDateTime.now());
+        orderSender.send(orderSend);
 
-        //for (Customer customer : customerRepository.findByDateBetween(from, to)) {
-        //    System.out.println(customer);
-        //}
 
         System.out.println("Done!");
 
-       // exit(0);
+        // exit(0);
     }
 
 }
